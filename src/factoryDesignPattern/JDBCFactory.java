@@ -1,6 +1,6 @@
 package factoryDesignPattern;
 
-import com.mysql.jdbc.StringUtils;
+import com.mysql.cj.util.StringUtils;
 
 public class JDBCFactory {
 	public static DatabaseConnection getConnectionForDB(String databaseName) {
