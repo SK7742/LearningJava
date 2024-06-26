@@ -16,3 +16,12 @@ Creational Design Patterns
 		Create classes implementing the interface and override the methods
 		create a factory class with a static method which will take a argument to decide the objectType
 		Using If-else or switch case handle the object creation and return it.
+
+3. Builder- A creational design pattern that lets you construct complex objects step by step. 
+	The pattern allows you to produce different types and representations of an object using the same construction code.
+	
+	Steps:-
+		Create the Product class with constructor argument as ProductBuilder
+		With the help of productBuilder object we will set the member variables.
+		Create a ProductBuilder class with the same argument and create method for each data member with return type productBuilder 
+		At last create a method builder that will create a instance through calling product constructor.
