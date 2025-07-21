@@ -11,12 +11,17 @@ Redis is a popular, open-source, in-memory data structure store that is often us
 
 
 
-## Installation
+## Installation & Running the container
 
 To Install latest Redis on docker, follow the command
 
-```bash
-Docker pull redis
+```Docker
+Docker pull redis   --Downloads and Install the latest redis image
+docker image ls -a    --list all the available images
+docker run -d -p 6379:6379 --name customNameOfImageContainer imageName [-d detached mode, -p configured port]
+docker ps  --List down the running containers
+docker exec -it imageName sh    --connects with the image shell [Redis shell in our case]
+redis-cli
 ```
 
 # Components
@@ -34,28 +39,21 @@ Docker pull redis
 8. Stream
 9. Geo
 
-## Usage
-
-```python
-import foobar
-
-# returns 'words'
-foobar.pluralize('word')
-
-# returns 'geese'
-foobar.pluralize('goose')
-
-# returns 'phenomenon'
-foobar.singularize('phenomena')
+# String commands
+```Redis
+SET name "Shivam Kumar"      -- used to make an entry of string with Key- name & Value- "Shivam Kumar"
+GET name                     -- Retuns "Shivam Kumar"
+SET counter 0                -- As integer is not supported, the value will be saved as String
+GET counter                  -- Returns "0"
+INCR counter                 -- It will increase the value by 1
+DECR counter                 -- It will decrease the value by 1
+INCRBY counter 4             -- Increases the value of counter by 4, so new value of counter will be 5
+DECRBY counter 2             -- Increases the value of counter by 3, so new value of counter will be 5
+APPEND name Gupta            -- Appends Gupta to the existing value of key "name"
+STRLEN name                  -- Returns length of value of key "name"
+GETRANGE name 2 6            -- Returns the character from index 2 to 6 of key name  
 ```
 
-## Contributing
-
-Pull requests are welcome. For major changes, please open an issue first
-to discuss what you would like to change.
-
-Please make sure to update tests as appropriate.
-
-## License
-
-[MIT](https://choosealicense.com/licenses/mit/)
+# HashMap
+1. GET
+2. SET
