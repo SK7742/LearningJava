@@ -55,5 +55,63 @@ GETRANGE name 2 6            -- Returns the character from index 2 to 6 of key n
 ```
 
 # HashMap
-1. GET
-2. SET
+1. HGET- Getting values from Map using key
+2. HSET- Setting key value pair 
+3. HMSET- Setting multiple key value pairs
+4. HMGET- Getting multiple key values
+
+5. # HashMap commands
+```Redis
+SET charFreqMap "a" "5" "b" "3" "c" "7"              -- Stores the data like- Key a value 5
+HGETALL charFreqMap                                  -- Retrieves all the key and value entries in charFreqMap
+HGET charFreqMap "a"                                 -- Retrives value of key "a" -> 5
+HMGET charFreqMap "a" "c"                            -- Retrives values of key "a" "c" -> 5 7
+HMSET charFreqMap "d" "9" "e" "1"                    -- Set the values to charFreqMap         
+```
+# List
+1. LPUSH     -- Adds the element in left corner of the list, the very first pushed element will appear at the last of the list.
+2. RPUSH     -- Adds the element in right corner of the list, the insertion order remains same.
+3. LPOP      -- Removes the element from begining / left it can have another optional arg.
+4. RPOP      -- Removes the element from end / right it can have another optional arg.
+5. LRANGE    -- Retrives the list between a range, 0 -1 is used to show all items.
+
+10. # List commands
+```Redis
+LPUSH books "maths" "chemistry" "physics"            -- Stores the data like- ["physics", "chemistry", "maths"]
+LPOP books                                           -- Removes the left most element "Physics"
+RPUSH books "physics"                                -- data like- ["chemistry", "maths", "physics"]
+RPOP books 2                                         -- Removes the right most 2 elements "Physics", "maths"
+LRANGE books 0 -1                                    -- Retrives all items from the list
+LRANGE books 2 4                                     -- Retrives items from the index 2 till 4     
+```
+
+# Sets
+Stores the unique values, insertion order is not preserved.
+1. SADD       -- Adds the element in set.
+2. SMEMBERS   -- List down the elements stored in list. 
+3. SREM       -- Removes the element from list.
+
+10. # Set commands
+```Redis
+SADD books "maths" "chemistry" "physics"            -- Stores the data
+SADD books "chemistry"                              -- Nothing happens as "chemistry is already in set"
+SMEMBERS books                                      -- Retrives the data stored in the list
+SREM books "chemistry"                              -- Removes the element "chemistry" from the set.  
+```
+
+# Sorted Sets
+Stores the unique values, .
+1. ZADD       -- Adds the element in set in default sorting order.
+2. ZRANGE     -- List down the elements stored in list from initial index to final index. 
+3. ZREV       -- List down the elements stored in list from initial index to final index on reverse order.
+4. ZINCR      -- Increase the value by the specified increment
+
+10. # Sorted Set commands
+```Redis
+ZADD books 10 "maths" 5 "chemistry" 7 "physics"      -- Stores the data like ["chemistry", "physics", "maths"]
+ZADD books 50 "english"                              -- add in sorted order into the set- ["chemistry", "physics", "maths", english]
+ZADD books 20 "hindi"                                -- add in sorted order into the set- ["chemistry", "physics", "maths", hindi, english]
+ZRANGE books 0 -1                                    -- Retrives all the data stored in the sorted set
+ZRANGE books 2 4                                     -- Retrives the data stored in the sorted set from index 2 to 4
+ZINCRBY books 10 "english"                           -- add 10 to the count of english - 60.  
+```
